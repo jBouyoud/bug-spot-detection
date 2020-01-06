@@ -1,0 +1,4 @@
+# Ignore coverage files
+coverage
+node_modules
+dist

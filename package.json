@@ -1,0 +1,136 @@
+{
+  "name": "bugspot",
+  "version": "0.0.0",
+  "description": "Spot of bugs  identifier",
+  "keywords": [
+    "developers"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leadformance/nestjs-dynamic-module.git"
+  },
+  "engines": {
+    "node": ">=12",
+    "yarn": ">=1"
+  },
+  "author": "dev@leadformance.com",
+  "license": "UNLICENSED",
+  "private": false,
+  "files": [
+    "dist/index.{d.ts,js}",
+    "dist/src/**/*.{js,ts}"
+  ],
+  "publishConfig": {
+    "registry": "https://solocal.jfrog.io/solocal/api/npm/npm-local/"
+  },
+  "scripts": {
+    "run": "ts-node src/index.ts",
+    "build": "tsc",
+    "ci-validate": "yarn lint && yarn test:cov",
+    "cover": "open coverage/lcov-report/index.html",
+    "eslint": "eslint -c .eslintrc.json --ext ts",
+    "lint": "yarn lint:eslint && yarn lint:prettier && yarn lint:commit",
+    "lint:commit": "commitlint --from=$( git rev-list --tags --max-count=1 )",
+    "lint:eslint": "yarn eslint '**/*.ts'",
+    "lint:eslint:fix": "yarn eslint '**/*.ts' --fix",
+    "lint:prettier": "yarn prettier -l '{specs,src,test}/**/*.{ts,md,json}'",
+    "lint:prettier:fix": "yarn prettier --write '{specs,src,test}**/*.{ts,md,json}'",
+    "prepublishOnly": "yarn build",
+    "test": "jest --forceExit --passWithNoTests",
+    "test:cov": "yarn test --ci --coverage",
+    "test:watch": "yarn test --watch"
+  },
+  "commitlint": {
+    "extends": [
+      "@bridge/commitlint-config",
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "yarn eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  },
+  "jest": {
+    "coverageDirectory": "coverage",
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts",
+      "!src/**/@types/**",
+      "!src/**/index.ts"
+    ],
+    "globals": {
+      "BLUEBIRD_DEBUG": 1
+    },
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "modulePaths": [
+      "."
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/src/**/*.test.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    }
+  },
+  "devDependencies": {
+    "@bridge/commitlint-config": "^2.1.1",
+    "@bridge/eslint-config": "^4.0.46",
+    "@bridge/semantic-release-config": "^2.1.38",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@types/jest": "^24.0.25",
+    "codecov": "^3.2.0",
+    "husky": "^3.1.0",
+    "jest": "^24.8.0",
+    "jest-environment-node-debug": "^2.0.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "bluestream": "^10.3.3",
+    "conventional-commits-parser": "^3.0.8",
+    "lodash": "^4.17.15",
+    "machinelearn": "^2.1.5",
+    "random-forest-classifier": "^0.6.0",
+    "spawn-error-forwarder": "^1.0.0",
+    "traverse": "^0.6.6"
+  }
+}

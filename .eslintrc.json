@@ -1,0 +1,9 @@
+{
+  "extends": "@bridge",
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/interface-name-prefix": "off"
+  }
+}
