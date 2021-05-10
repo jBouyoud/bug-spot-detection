@@ -127,7 +127,7 @@
     "@types/lodash": "^4.14.149",
     "bluestream": "^10.3.3",
     "conventional-commits-parser": "^3.0.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "machinelearn": "^2.1.5",
     "random-forest-classifier": "^0.6.0",
     "spawn-error-forwarder": "^1.0.0",
